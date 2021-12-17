@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//fazendo a camera seguir o jogador
 public class ControlaCamera : MonoBehaviour
 {
     public GameObject Jogador;
