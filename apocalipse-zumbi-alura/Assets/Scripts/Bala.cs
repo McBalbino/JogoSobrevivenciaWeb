@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,5 +15,17 @@ public class Bala : MonoBehaviour
         GetComponent<Rigidbody>().MovePosition
             (GetComponent<Rigidbody>().position + 
              transform.forward * Velocidade * Time.deltaTime);
+    }
+
+    //destruindo um inimigo com a bala
+    private void OnTriggerEnter(Collider objetoDeColisao)
+    {
+        if (objetoDeColisao.tag == "Inimigo")
+        {
+            Destroy(objetoDeColisao.gameObject);
+        }
+        
+        //destruindo a bala depois dela colidir com qualquer coisa
+        Destroy(gameObject);
     }
 }
