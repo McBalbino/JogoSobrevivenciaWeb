@@ -2,16 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ControlaInimigo : MonoBehaviour
 {
     public GameObject Jogador;
+    
+    private Rigidbody rigibodyInimigo;
+    private Animator animatorInimigo;
 
     public float Velocidade = 5;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Jogador = GameObject.FindWithTag("Jogador");
+        int geraTipoZumbi = Random.Range(1, 28);
+        transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
+        rigibodyInimigo = GetComponent<Rigidbody>();
+        animatorInimigo = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,17 +40,17 @@ public class ControlaInimigo : MonoBehaviour
         if (distancia > 2.5)
         {
             //fazendo os zumbis pararem perto do jogador
-            GetComponent<Rigidbody>().MovePosition
-            (GetComponent<Rigidbody>().position + 
+            rigibodyInimigo.MovePosition
+            (rigibodyInimigo.position + 
              direcao.normalized * Velocidade * Time.deltaTime);
             
-            GetComponent<Animator>().SetBool("Atacando", false);
+            animatorInimigo.SetBool("Atacando", false);
 
         }
         else
         {
             //fazendo os zumbis atacarem
-            GetComponent<Animator>().SetBool("Atacando", true);
+            animatorInimigo.SetBool("Atacando", true);
         }
     }
     

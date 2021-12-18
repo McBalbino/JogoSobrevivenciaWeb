@@ -9,6 +9,9 @@ public class ControlaJogador : MonoBehaviour
     public float Velocidade = 10;
 
     private Vector3 direcao;
+
+    private Rigidbody rigibodyJogador;
+    private Animator animatorJogador;
     
     //parte do voce perdeu
     public GameObject TextGameOver;
@@ -20,6 +23,8 @@ public class ControlaJogador : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+        rigibodyJogador = GetComponent<Rigidbody>();
+        animatorJogador = GetComponent<Animator>();
     }
 
     //limitando o raio so ate o chao pra nn pegar no hotel ou buraco etc
@@ -36,11 +41,11 @@ public class ControlaJogador : MonoBehaviour
         //configurando animacoes de ficar parado ou andar
         if (direcao != Vector3.zero)
         {
-            GetComponent<Animator>().SetBool("Movendo", true);
+            animatorJogador.SetBool("Movendo", true);
         }
         else
         {
-            GetComponent<Animator>().SetBool("Movendo", false);
+            animatorJogador.SetBool("Movendo", false);
         }
 
         if (Vivo == false)
@@ -55,8 +60,8 @@ public class ControlaJogador : MonoBehaviour
     //movendo jogador
     private void FixedUpdate()
     {
-        GetComponent<Rigidbody>().MovePosition
-        (GetComponent<Rigidbody>().position + 
+        rigibodyJogador.MovePosition
+        (rigibodyJogador.position + 
          (direcao * Velocidade * Time.deltaTime));
         
         //rotacao do jogador a partir do mouse
@@ -72,7 +77,7 @@ public class ControlaJogador : MonoBehaviour
 
             Quaternion novaRotacao = Quaternion.LookRotation(posicaoMiraJogador);
             
-            GetComponent<Rigidbody>().MoveRotation(novaRotacao);
+            rigibodyJogador.MoveRotation(novaRotacao);
         }
     }
 }

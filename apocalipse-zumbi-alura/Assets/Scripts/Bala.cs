@@ -5,15 +5,21 @@ using UnityEngine;
 
 public class Bala : MonoBehaviour
 {
+    private Rigidbody rigibodyBala;
+
     public float Velocidade = 20;
     // Start is called before the first frame update
+    private void Start()
+    {
+        rigibodyBala = GetComponent<Rigidbody>();
+    }
 
     // fazendo bala ir em linha reta
     // Update is called once per frame
     void FixedUpdate()
     {
-        GetComponent<Rigidbody>().MovePosition
-            (GetComponent<Rigidbody>().position + 
+        rigibodyBala.MovePosition
+            (rigibodyBala.position + 
              transform.forward * Velocidade * Time.deltaTime);
     }
 
