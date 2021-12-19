@@ -18,6 +18,9 @@ public class ControlaJogador : MonoBehaviour
     
     //parte do voce perdeu
     public GameObject TextGameOver;
+    
+    //slider de vida
+    public ControlaInterface scriptControlaInterface;
 
     //recomecando jogo
     private void Start()
@@ -85,6 +88,9 @@ public class ControlaJogador : MonoBehaviour
     public void TomarDano(int dano)
     {
         Vida -= dano;
+        //slider de vida
+        scriptControlaInterface.AtualizarSliderVidaJogador();
+        //vida
         if (Vida <= 0)
         {
             //parte do voce perdeu da parte 1

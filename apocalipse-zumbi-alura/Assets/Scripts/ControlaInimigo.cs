@@ -57,7 +57,7 @@ public class ControlaInimigo : MonoBehaviour
     //reiniciando o jogo ao ser atacado
     void AtacaJogador()
     {
-        int dano = Random.Range(20, 30);
+        int dano = Random.Range(20, 25);
         //pegando uma variavel de outra classe
         Jogador.GetComponent<ControlaJogador>().TomarDano(dano);
     }
