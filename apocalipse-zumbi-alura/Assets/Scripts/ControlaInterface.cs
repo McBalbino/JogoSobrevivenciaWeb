@@ -15,6 +15,7 @@ public class ControlaInterface : MonoBehaviour
             .GetComponent<ControlaJogador>();
 
         SliderVidaJogador.maxValue = scriptControlaJogador.Vida;
+        AtualizarSliderVidaJogador();
     }
 
     // Update is called once per frame
