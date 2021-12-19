@@ -13,12 +13,12 @@ public class ControlaJogador : MonoBehaviour
     private Rigidbody rigibodyJogador;
     private Animator animatorJogador;
     
+    //criando a barra de vida
+    public int Vida = 100;
+    
     //parte do voce perdeu
     public GameObject TextGameOver;
-    
-    //criando a vida do jogador
-    public bool Vivo = true;
-    
+
     //recomecando jogo
     private void Start()
     {
@@ -48,7 +48,7 @@ public class ControlaJogador : MonoBehaviour
             animatorJogador.SetBool("Movendo", false);
         }
 
-        if (Vivo == false)
+        if (Vida <= 0)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -69,6 +69,7 @@ public class ControlaJogador : MonoBehaviour
         Debug.DrawRay(raio.origin, raio.direction * 100, Color.red);
 
         RaycastHit impacto;
+        
         if (Physics.Raycast(raio, out impacto, 100, MascaraChao))
         {
             Vector3 posicaoMiraJogador = impacto.point - transform.position;
@@ -78,6 +79,17 @@ public class ControlaJogador : MonoBehaviour
             Quaternion novaRotacao = Quaternion.LookRotation(posicaoMiraJogador);
             
             rigibodyJogador.MoveRotation(novaRotacao);
+        }
+    }
+
+    public void TomarDano(int dano)
+    {
+        Vida -= dano;
+        if (Vida <= 0)
+        {
+            //parte do voce perdeu da parte 1
+            Time.timeScale = 0;
+            TextGameOver.SetActive(true);
         }
     }
 }

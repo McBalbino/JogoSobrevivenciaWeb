@@ -57,9 +57,8 @@ public class ControlaInimigo : MonoBehaviour
     //reiniciando o jogo ao ser atacado
     void AtacaJogador()
     {
-        Time.timeScale = 0;
-        //parte do voce perdeu
-        Jogador.GetComponent<ControlaJogador>().TextGameOver.SetActive(true);
-        Jogador.GetComponent<ControlaJogador>().Vivo = false;
+        int dano = Random.Range(20, 30);
+        //pegando uma variavel de outra classe
+        Jogador.GetComponent<ControlaJogador>().TomarDano(dano);
     }
 }
