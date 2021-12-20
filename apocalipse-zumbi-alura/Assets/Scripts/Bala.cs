@@ -8,6 +8,9 @@ public class Bala : MonoBehaviour
     private Rigidbody rigibodyBala;
 
     public float Velocidade = 20;
+    
+    //som morte zumbi
+    public AudioClip SomDeMorte;
     // Start is called before the first frame update
     private void Start()
     {
@@ -29,6 +32,8 @@ public class Bala : MonoBehaviour
         if (objetoDeColisao.tag == "Inimigo")
         {
             Destroy(objetoDeColisao.gameObject);
+            //som de morte zumbi
+            ControlaAudio.instancia.PlayOneShot(SomDeMorte);
         }
         
         //destruindo a bala depois dela colidir com qualquer coisa

@@ -7,9 +7,7 @@ using UnityEngine.SceneManagement;
 public class ControlaJogador : MonoBehaviour
 {
     public float Velocidade = 10;
-
     private Vector3 direcao;
-
     private Rigidbody rigibodyJogador;
     private Animator animatorJogador;
     
@@ -21,6 +19,9 @@ public class ControlaJogador : MonoBehaviour
     
     //slider de vida
     public ControlaInterface scriptControlaInterface;
+    
+    //colocando audio no jogador
+    public AudioClip SomDeDano;
 
     //recomecando jogo
     private void Start()
@@ -90,6 +91,8 @@ public class ControlaJogador : MonoBehaviour
         Vida -= dano;
         //slider de vida
         scriptControlaInterface.AtualizarSliderVidaJogador();
+        //colocando audio na vida
+        ControlaAudio.instancia.PlayOneShot(SomDeDano);
         //vida
         if (Vida <= 0)
         {
