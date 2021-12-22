@@ -8,27 +8,23 @@ public class ControlaJogador : MonoBehaviour
 {
     public float Velocidade = 10;
     private Vector3 direcao;
-    private Rigidbody rigibodyJogador;
-    private Animator animatorJogador;
-    
     //criando a barra de vida
     public int Vida = 100;
-    
     //parte do voce perdeu
     public GameObject TextGameOver;
-    
     //slider de vida
     public ControlaInterface scriptControlaInterface;
-    
     //colocando audio no jogador
     public AudioClip SomDeDano;
+    private MovimentoJogador meuMovimentoJogador;
+    private AnimacaoPersonagem animacaoJogador;
 
     //recomecando jogo
     private void Start()
     {
         Time.timeScale = 1;
-        rigibodyJogador = GetComponent<Rigidbody>();
-        animatorJogador = GetComponent<Animator>();
+        meuMovimentoJogador = GetComponent<MovimentoJogador>();
+        animacaoJogador = GetComponent<AnimacaoPersonagem>();
     }
 
     //limitando o raio so ate o chao pra nn pegar no hotel ou buraco etc
@@ -43,14 +39,8 @@ public class ControlaJogador : MonoBehaviour
         direcao = new Vector3(eixoX, 0, eixoZ);
 
         //configurando animacoes de ficar parado ou andar
-        if (direcao != Vector3.zero)
-        {
-            animatorJogador.SetBool("Movendo", true);
-        }
-        else
-        {
-            animatorJogador.SetBool("Movendo", false);
-        }
+        animacaoJogador.Movimentar(direcao.magnitude);
+
 
         if (Vida <= 0)
         {
@@ -64,26 +54,9 @@ public class ControlaJogador : MonoBehaviour
     //movendo jogador
     private void FixedUpdate()
     {
-        rigibodyJogador.MovePosition
-        (rigibodyJogador.position + 
-         (direcao * Velocidade * Time.deltaTime));
-        
-        //rotacao do jogador a partir do mouse
-        Ray raio = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(raio.origin, raio.direction * 100, Color.red);
+        meuMovimentoJogador.Movimentar(direcao, Velocidade);
 
-        RaycastHit impacto;
-        
-        if (Physics.Raycast(raio, out impacto, 100, MascaraChao))
-        {
-            Vector3 posicaoMiraJogador = impacto.point - transform.position;
-
-            posicaoMiraJogador.y = transform.position.y;
-
-            Quaternion novaRotacao = Quaternion.LookRotation(posicaoMiraJogador);
-            
-            rigibodyJogador.MoveRotation(novaRotacao);
-        }
+        meuMovimentoJogador.RotacaoJogador(MascaraChao);
     }
 
     public void TomarDano(int dano)
