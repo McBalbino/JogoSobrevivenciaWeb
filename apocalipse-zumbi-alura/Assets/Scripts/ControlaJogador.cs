@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ControlaJogador : MonoBehaviour
+public class ControlaJogador : MonoBehaviour, IMatavel
 {
     private Vector3 direcao;
     //parte do voce perdeu
@@ -68,9 +68,14 @@ public class ControlaJogador : MonoBehaviour
         //vida
         if (statusJogador.Vida <= 0)
         {
-            //parte do voce perdeu da parte 1
-            Time.timeScale = 0;
-            TextGameOver.SetActive(true);
+            //parte do voce perdeu
+            Morrer();
         }
+    }
+
+    public void Morrer()
+    {
+        Time.timeScale = 0;
+        TextGameOver.SetActive(true);
     }
 }

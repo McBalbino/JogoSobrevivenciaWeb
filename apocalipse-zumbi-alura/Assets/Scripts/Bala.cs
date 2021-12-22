@@ -31,9 +31,7 @@ public class Bala : MonoBehaviour
     {
         if (objetoDeColisao.tag == "Inimigo")
         {
-            Destroy(objetoDeColisao.gameObject);
-            //som de morte zumbi
-            ControlaAudio.instancia.PlayOneShot(SomDeMorte);
+            objetoDeColisao.GetComponent<ControlaInimigo>().TomarDano(1);
         }
         
         //destruindo a bala depois dela colidir com qualquer coisa

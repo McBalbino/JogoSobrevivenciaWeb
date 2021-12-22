@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ControlaInimigo : MonoBehaviour
+public class ControlaInimigo : MonoBehaviour, IMatavel
 {
     public GameObject Jogador;
     private MovimentoPersonagem movimentaInimigo;
     private AnimacaoPersonagem animacaoInimigo;
     private Status statusInimigo;
+    public AudioClip SomDeMorte;
     
     // Start is called before the first frame update
     void Start()
@@ -54,5 +54,21 @@ public class ControlaInimigo : MonoBehaviour
     {
         int geraTipoZumbi = Random.Range(1, 28);
         transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
+    }
+
+    public void TomarDano(int dano)
+    {
+        statusInimigo.Vida -= dano;
+        if (statusInimigo.Vida <= 0)
+        {
+            Morrer();
+        }
+    }
+
+    public void Morrer()
+    {
+        Destroy(gameObject);
+        //som de morte zumbi
+        ControlaAudio.instancia.PlayOneShot(SomDeMorte);
     }
 }
