@@ -6,10 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ControlaJogador : MonoBehaviour
 {
-    public float Velocidade = 10;
     private Vector3 direcao;
-    //criando a barra de vida
-    public int Vida = 100;
     //parte do voce perdeu
     public GameObject TextGameOver;
     //slider de vida
@@ -18,6 +15,7 @@ public class ControlaJogador : MonoBehaviour
     public AudioClip SomDeDano;
     private MovimentoJogador meuMovimentoJogador;
     private AnimacaoPersonagem animacaoJogador;
+    public Status statusJogador;
 
     //recomecando jogo
     private void Start()
@@ -25,6 +23,7 @@ public class ControlaJogador : MonoBehaviour
         Time.timeScale = 1;
         meuMovimentoJogador = GetComponent<MovimentoJogador>();
         animacaoJogador = GetComponent<AnimacaoPersonagem>();
+        statusJogador = GetComponent<Status>();
     }
 
     //limitando o raio so ate o chao pra nn pegar no hotel ou buraco etc
@@ -42,7 +41,7 @@ public class ControlaJogador : MonoBehaviour
         animacaoJogador.Movimentar(direcao.magnitude);
 
 
-        if (Vida <= 0)
+        if (statusJogador.Vida <= 0)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -54,20 +53,20 @@ public class ControlaJogador : MonoBehaviour
     //movendo jogador
     private void FixedUpdate()
     {
-        meuMovimentoJogador.Movimentar(direcao, Velocidade);
+        meuMovimentoJogador.Movimentar(direcao, statusJogador.Velocidade);
 
         meuMovimentoJogador.RotacaoJogador(MascaraChao);
     }
 
     public void TomarDano(int dano)
     {
-        Vida -= dano;
+        statusJogador.Vida -= dano;
         //slider de vida
         scriptControlaInterface.AtualizarSliderVidaJogador();
         //colocando audio na vida
         ControlaAudio.instancia.PlayOneShot(SomDeDano);
         //vida
-        if (Vida <= 0)
+        if (statusJogador.Vida <= 0)
         {
             //parte do voce perdeu da parte 1
             Time.timeScale = 0;

@@ -8,8 +8,8 @@ public class ControlaInimigo : MonoBehaviour
 {
     public GameObject Jogador;
     private MovimentoPersonagem movimentaInimigo;
-    public float Velocidade = 5;
     private AnimacaoPersonagem animacaoInimigo;
+    private Status statusInimigo;
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,7 @@ public class ControlaInimigo : MonoBehaviour
         animacaoInimigo = GetComponent<AnimacaoPersonagem>();
         movimentaInimigo = GetComponent<MovimentoPersonagem>();
         AleatorizarZumbi();
+        statusInimigo = GetComponent<Status>();
     }
     
     private void FixedUpdate()
@@ -31,7 +32,7 @@ public class ControlaInimigo : MonoBehaviour
         if (distancia > 2.5)
         {
             //fazendo os zumbis pararem perto do jogador
-            movimentaInimigo.Movimentar(direcao, Velocidade);
+            movimentaInimigo.Movimentar(direcao, statusInimigo.Velocidade);
             animacaoInimigo.Atacar(false);
         }
         else
