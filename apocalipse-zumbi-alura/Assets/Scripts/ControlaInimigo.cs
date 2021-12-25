@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
+//using Random = UnityEngine.Random;
 
 public class ControlaInimigo : MonoBehaviour, IMatavel
 {
@@ -13,7 +13,7 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     private Vector3 posicaoAleatoria;
     private Vector3 direcao;
     private float contadorVagar;
-    private float rempoEntrePosicoesAleatorias = 4;
+    private float tempoEntrePosicoesAleatorias = 4;
     
     // Start is called before the first frame update
     void Start()
@@ -32,7 +32,6 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
         movimentaInimigo.Rotacionar(direcao);
         animacaoInimigo.Movimentar(direcao.magnitude);
         
-
         if (distancia > 15)
         {
             Vagar();
@@ -57,11 +56,11 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
         if (contadorVagar <= 0)
         {
             posicaoAleatoria = AleatorizarPosicao();
-            contadorVagar += rempoEntrePosicoesAleatorias;
+            contadorVagar += tempoEntrePosicoesAleatorias;
         }
 
-        bool ficouPertoSuficiente = Vector3.Distance(transform.position, posicaoAleatoria) <= 0.05;
-        if (ficouPertoSuficiente == false)
+        bool ficouPertoOSuficiente = Vector3.Distance(transform.position, posicaoAleatoria) <= 0.05;
+        if (ficouPertoOSuficiente == false)
         {
             direcao = posicaoAleatoria - transform.position;
             movimentaInimigo.Movimentar(direcao, statusInimigo.Velocidade);
@@ -70,7 +69,7 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     }
     
     //criando posicao aleatoria
-    private Vector3 AleatorizarPosicao()
+    Vector3 AleatorizarPosicao()
     {
         Vector3 posicao = Random.insideUnitSphere * 10;
         posicao += transform.position;

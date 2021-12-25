@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +21,6 @@ public class MovimentoPersonagem : MonoBehaviour
     public void Rotacionar(Vector3 direcao)
     {
         Quaternion novaRotacao = Quaternion.LookRotation(direcao);
-        GetComponent<Rigidbody>().MoveRotation(novaRotacao);
+        meuRigidbody.MoveRotation(novaRotacao);
     }
 }

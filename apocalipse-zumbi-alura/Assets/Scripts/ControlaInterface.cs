@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class ControlaInterface : MonoBehaviour
 {
     private ControlaJogador scriptControlaJogador;
-
     public Slider SliderVidaJogador;
+    
     // Start is called before the first frame update
     void Start()
     {

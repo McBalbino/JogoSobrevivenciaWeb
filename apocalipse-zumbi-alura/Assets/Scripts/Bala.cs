@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bala : MonoBehaviour
 {
     private Rigidbody rigibodyBala;
-
     public float Velocidade = 20;
-    
-    //som morte zumbi
-    public AudioClip SomDeMorte;
+    public AudioClip SomDeMorte; //som morte zumbi
+
     // Start is called before the first frame update
     private void Start()
     {

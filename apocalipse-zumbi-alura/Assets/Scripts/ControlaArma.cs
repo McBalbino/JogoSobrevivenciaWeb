@@ -5,11 +5,9 @@ using UnityEngine;
 public class ControlaArma : MonoBehaviour
 {
     public GameObject Bala;
-
     public GameObject CanoDaArma;
+    public AudioClip SomDoTiro; //colocando som no tiro
     
-    //colocando som no tiro
-    public AudioClip SomDoTiro;
     // Start is called before the first frame update
     void Start()
     {

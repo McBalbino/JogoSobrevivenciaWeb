@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,15 +6,13 @@ using UnityEngine.SceneManagement;
 public class ControlaJogador : MonoBehaviour, IMatavel
 {
     private Vector3 direcao;
-    //parte do voce perdeu
-    public GameObject TextGameOver;
-    //slider de vida
-    public ControlaInterface scriptControlaInterface;
-    //colocando audio no jogador
-    public AudioClip SomDeDano;
+    public GameObject TextGameOver; //parte do voce perdeu
+    public ControlaInterface scriptControlaInterface; //slider de vida
+    public AudioClip SomDeDano; //colocando audio no jogador
     private MovimentoJogador meuMovimentoJogador;
     private AnimacaoPersonagem animacaoJogador;
     public Status statusJogador;
+    public LayerMask MascaraChao; //limitando o raio so ate o chao pra nn pegar no hotel ou buraco etc
 
     //recomecando jogo
     private void Start()
@@ -26,8 +23,6 @@ public class ControlaJogador : MonoBehaviour, IMatavel
         statusJogador = GetComponent<Status>();
     }
 
-    //limitando o raio so ate o chao pra nn pegar no hotel ou buraco etc
-    public LayerMask MascaraChao;
     // Update is called once per frame
     void Update()
     {
@@ -61,10 +56,8 @@ public class ControlaJogador : MonoBehaviour, IMatavel
     public void TomarDano(int dano)
     {
         statusJogador.Vida -= dano;
-        //slider de vida
-        scriptControlaInterface.AtualizarSliderVidaJogador();
-        //colocando audio na vida
-        ControlaAudio.instancia.PlayOneShot(SomDeDano);
+        scriptControlaInterface.AtualizarSliderVidaJogador(); //slider de vida
+        ControlaAudio.instancia.PlayOneShot(SomDeDano); //colocando audio na vida
         //vida
         if (statusJogador.Vida <= 0)
         {
