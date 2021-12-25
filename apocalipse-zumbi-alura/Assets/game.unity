@@ -1640,7 +1640,7 @@ GameObject:
   - component: {fileID: 362387223}
   - component: {fileID: 362387222}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TextoSobrevivencia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2982,6 +2982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SliderVidaJogador: {fileID: 1405272727}
   PainelDeGameOver: {fileID: 1512258188}
+  TextoTempoDeSobrevivencia: {fileID: 362387222}
 --- !u!4 &620379602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4656246329960846, guid: bf4e53320739441f58d231c2ee884b66,
