@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 // criando zumbis
@@ -12,36 +14,56 @@ public class GeradorZumbis : MonoBehaviour
 
     public float TempoGerarZumbi = 1;
     public LayerMask LayerZumbi;
+    private float distanciaDeGeracao = 3;
+    private float DistanciaDoJogadorParaGeracao = 20;
+    private GameObject jogador;
+
+    private void Start()
+    {
+        jogador = GameObject.FindWithTag("Jogador");
+    }
 
     // Update is called once per frame
     void Update()
     {
-        contadorTempo += Time.deltaTime;
-
-        if (contadorTempo >= TempoGerarZumbi)
+        if (Vector3.Distance(transform.position, jogador.transform.position) > DistanciaDoJogadorParaGeracao)
         {
-            GerarNovoZumbi();
-            contadorTempo = 0;
+            contadorTempo += Time.deltaTime;
+
+            if (contadorTempo >= TempoGerarZumbi)
+            {
+                StartCoroutine(GerarNovoZumbi());
+                contadorTempo = 0;
+            }
         }
+
     }
 
-    void GerarNovoZumbi()
+    //desenha o gizmo dos geradores
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, distanciaDeGeracao);
+    }
+
+    IEnumerator GerarNovoZumbi()
     {
         Vector3 posicaoDeCriacao = AleatorizarPosicao();
         Collider[] colisores = Physics.OverlapSphere(posicaoDeCriacao, 1, LayerZumbi);
 
-        if (colisores.Length > 0)
+        while (colisores.Length > 0)
         {
             posicaoDeCriacao = AleatorizarPosicao();
             colisores = Physics.OverlapSphere(posicaoDeCriacao, 1, LayerZumbi);
-
+            //espera o proximo frame e tenta dnv p nn travar o while
+            yield return null;
         }
         Instantiate(Zumbi, posicaoDeCriacao, transform.rotation);
     }
 
     Vector3 AleatorizarPosicao()
     {
-        Vector3 posicao = Random.insideUnitSphere * 3;
+        Vector3 posicao = Random.insideUnitSphere * distanciaDeGeracao;
         posicao += transform.position;
         posicao.y = 0;
 
