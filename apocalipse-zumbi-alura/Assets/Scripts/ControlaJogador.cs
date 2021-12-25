@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ControlaJogador : MonoBehaviour, IMatavel
 {
@@ -17,7 +16,6 @@ public class ControlaJogador : MonoBehaviour, IMatavel
     //recomecando jogo
     private void Start()
     {
-        Time.timeScale = 1;
         meuMovimentoJogador = GetComponent<MovimentoJogador>();
         animacaoJogador = GetComponent<AnimacaoPersonagem>();
         statusJogador = GetComponent<Status>();
@@ -34,15 +32,7 @@ public class ControlaJogador : MonoBehaviour, IMatavel
 
         //configurando animacoes de ficar parado ou andar
         animacaoJogador.Movimentar(direcao.magnitude);
-
-
-        if (statusJogador.Vida <= 0)
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                SceneManager.LoadScene("game");
-            }
-        }
+        
     }
 
     //movendo jogador
@@ -68,7 +58,6 @@ public class ControlaJogador : MonoBehaviour, IMatavel
 
     public void Morrer()
     {
-        Time.timeScale = 0;
-        TextGameOver.SetActive(true);
+        scriptControlaInterface.GameOver();
     }
 }
