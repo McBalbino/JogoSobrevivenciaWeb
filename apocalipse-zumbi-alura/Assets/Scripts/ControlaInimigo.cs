@@ -12,6 +12,8 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     public AudioClip SomDeMorte;
     private Vector3 posicaoAleatoria;
     private Vector3 direcao;
+    private float contadorVagar;
+    private float rempoEntrePosicoesAleatorias = 4;
     
     // Start is called before the first frame update
     void Start()
@@ -26,8 +28,10 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     private void FixedUpdate()
     {
         float distancia = Vector3.Distance(transform.position, Jogador.transform.position);
-
-
+        
+        movimentaInimigo.Rotacionar(direcao);
+        animacaoInimigo.Movimentar(direcao.magnitude);
+        
 
         if (distancia > 15)
         {
@@ -49,10 +53,20 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
 
     void Vagar()
     {
-        posicaoAleatoria = AleatorizarPosicao();
-        direcao = posicaoAleatoria - transform.position;
-        //fazendo os zumbis olharem na direcao do jogador
-        movimentaInimigo.Rotacionar(direcao);
+        contadorVagar -= Time.deltaTime;
+        if (contadorVagar <= 0)
+        {
+            posicaoAleatoria = AleatorizarPosicao();
+            contadorVagar += rempoEntrePosicoesAleatorias;
+        }
+
+        bool ficouPertoSuficiente = Vector3.Distance(transform.position, posicaoAleatoria) <= 0.05;
+        if (ficouPertoSuficiente == false)
+        {
+            direcao = posicaoAleatoria - transform.position;
+            movimentaInimigo.Movimentar(direcao, statusInimigo.Velocidade);
+        }
+
     }
     
     //criando posicao aleatoria
