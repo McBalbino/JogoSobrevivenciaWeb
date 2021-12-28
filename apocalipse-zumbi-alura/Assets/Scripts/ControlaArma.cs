@@ -5,9 +5,8 @@ using UnityEngine;
 public class ControlaArma : MonoBehaviour
 {
     public GameObject Bala;
+
     public GameObject CanoDaArma;
-    public AudioClip SomDoTiro; //colocando som no tiro
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +21,6 @@ public class ControlaArma : MonoBehaviour
         {
             //criando balas
             Instantiate(Bala, CanoDaArma.transform.position, CanoDaArma.transform.rotation);
-            //som do tiro
-            ControlaAudio.instancia.PlayOneShot(SomDoTiro);
         }
     }
 }
