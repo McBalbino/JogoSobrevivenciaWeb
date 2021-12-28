@@ -1,26 +1,34 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ControlaJogador : MonoBehaviour, IMatavel
+public class ControlaJogador : MonoBehaviour
 {
-    private Vector3 direcao;
-    public GameObject TextGameOver; //parte do voce perdeu
-    public ControlaInterface scriptControlaInterface; //slider de vida
-    public AudioClip SomDeDano; //colocando audio no jogador
-    private MovimentoJogador meuMovimentoJogador;
-    private AnimacaoPersonagem animacaoJogador;
-    public Status statusJogador;
-    public LayerMask MascaraChao; //limitando o raio so ate o chao pra nn pegar no hotel ou buraco etc
+    public float Velocidade = 10;
 
+    private Vector3 direcao;
+
+    private Rigidbody rigibodyJogador;
+    private Animator animatorJogador;
+    
+    //parte do voce perdeu
+    public GameObject TextGameOver;
+    
+    //criando a vida do jogador
+    public bool Vivo = true;
+    
     //recomecando jogo
     private void Start()
     {
-        meuMovimentoJogador = GetComponent<MovimentoJogador>();
-        animacaoJogador = GetComponent<AnimacaoPersonagem>();
-        statusJogador = GetComponent<Status>();
+        Time.timeScale = 1;
+        rigibodyJogador = GetComponent<Rigidbody>();
+        animatorJogador = GetComponent<Animator>();
     }
 
+    //limitando o raio so ate o chao pra nn pegar no hotel ou buraco etc
+    public LayerMask MascaraChao;
     // Update is called once per frame
     void Update()
     {
@@ -31,33 +39,45 @@ public class ControlaJogador : MonoBehaviour, IMatavel
         direcao = new Vector3(eixoX, 0, eixoZ);
 
         //configurando animacoes de ficar parado ou andar
-        animacaoJogador.Movimentar(direcao.magnitude);
-        
+        if (direcao != Vector3.zero)
+        {
+            animatorJogador.SetBool("Movendo", true);
+        }
+        else
+        {
+            animatorJogador.SetBool("Movendo", false);
+        }
+
+        if (Vivo == false)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                SceneManager.LoadScene("game");
+            }
+        }
     }
 
     //movendo jogador
     private void FixedUpdate()
     {
-        meuMovimentoJogador.Movimentar(direcao, statusJogador.Velocidade);
+        rigibodyJogador.MovePosition
+        (rigibodyJogador.position + 
+         (direcao * Velocidade * Time.deltaTime));
+        
+        //rotacao do jogador a partir do mouse
+        Ray raio = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(raio.origin, raio.direction * 100, Color.red);
 
-        meuMovimentoJogador.RotacaoJogador(MascaraChao);
-    }
-
-    public void TomarDano(int dano)
-    {
-        statusJogador.Vida -= dano;
-        scriptControlaInterface.AtualizarSliderVidaJogador(); //slider de vida
-        ControlaAudio.instancia.PlayOneShot(SomDeDano); //colocando audio na vida
-        //vida
-        if (statusJogador.Vida <= 0)
+        RaycastHit impacto;
+        if (Physics.Raycast(raio, out impacto, 100, MascaraChao))
         {
-            //parte do voce perdeu
-            Morrer();
-        }
-    }
+            Vector3 posicaoMiraJogador = impacto.point - transform.position;
 
-    public void Morrer()
-    {
-        scriptControlaInterface.GameOver();
+            posicaoMiraJogador.y = transform.position.y;
+
+            Quaternion novaRotacao = Quaternion.LookRotation(posicaoMiraJogador);
+            
+            rigibodyJogador.MoveRotation(novaRotacao);
+        }
     }
 }

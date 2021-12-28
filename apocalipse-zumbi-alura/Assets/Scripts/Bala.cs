@@ -1,13 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bala : MonoBehaviour
 {
     private Rigidbody rigibodyBala;
-    public float Velocidade = 20;
-    public AudioClip SomDeMorte; //som morte zumbi
 
+    public float Velocidade = 20;
     // Start is called before the first frame update
     private void Start()
     {
@@ -28,7 +28,7 @@ public class Bala : MonoBehaviour
     {
         if (objetoDeColisao.tag == "Inimigo")
         {
-            objetoDeColisao.GetComponent<ControlaInimigo>().TomarDano(1);
+            Destroy(objetoDeColisao.gameObject);
         }
         
         //destruindo a bala depois dela colidir com qualquer coisa
