@@ -63,7 +63,7 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
         if (contadorVagar <= 0)
         {
             posicaoAleatoria = AleatorizarPosicao();
-            contadorVagar += tempoEntrePosicoesAleatorias;
+            contadorVagar += tempoEntrePosicoesAleatorias + Random.Range(-1f, 1f);
         }
 
         bool ficouPertoOSuficiente = Vector3.Distance(transform.position, posicaoAleatoria) <= 0.05;
@@ -88,8 +88,7 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     //reiniciando o jogo ao ser atacado
     void AtacaJogador()
     {
-        int dano = Random.Range(20, 25);
-        //pegando uma variavel de outra classe
+        int dano = Random.Range(5, 15);
         Jogador.GetComponent<ControlaJogador>().TomarDano(dano);
     }
 
@@ -110,8 +109,10 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
 
     public void Morrer()
     {
-        Destroy(gameObject);
-        //som de morte zumbi
+        Destroy(gameObject, 2);
+        animacaoInimigo.Morrer();
+        movimentaInimigo.Morrer();
+        this.enabled = false;
         ControlaAudio.instancia.PlayOneShot(SomDeMorte);
         VerificarGeracaoKitMedico(porcentagemGerarKitMedico);
         scriptControlaInterface.AtualizarQuantidadeDeZumbisMortos();
