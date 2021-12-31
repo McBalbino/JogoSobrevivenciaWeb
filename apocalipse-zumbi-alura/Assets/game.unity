@@ -2897,7 +2897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665b6feb17596fed59bf9edb25c82d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempoEntreGeracoes: 10
+  tempoEntreGeracoes: 60
   ChefePrefab: {fileID: 1063500868937916, guid: 796fb3e9e0ee1c319ba76226d8085049,
     type: 3}
 --- !u!4 &488082348
