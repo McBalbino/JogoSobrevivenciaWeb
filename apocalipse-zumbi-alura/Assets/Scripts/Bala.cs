@@ -26,9 +26,15 @@ public class Bala : MonoBehaviour
     //destruindo um inimigo com a bala
     private void OnTriggerEnter(Collider objetoDeColisao)
     {
-        if (objetoDeColisao.tag == "Inimigo")
+        switch (objetoDeColisao.tag)
         {
-            objetoDeColisao.GetComponent<ControlaInimigo>().TomarDano(1);
+            case "Inimigo":
+                objetoDeColisao.GetComponent<ControlaInimigo>().TomarDano(1); 
+                break;
+            case "ChefeDeFase":
+                objetoDeColisao.GetComponent<ControlaChefe>().TomarDano(1); 
+                break;
+            
         }
         
         //destruindo a bala depois dela colidir com qualquer coisa
