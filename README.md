@@ -6,7 +6,7 @@
 </p>
 
 ---
-## Releases - Como jogar no browser
+## :video_game: Releases - Como jogar no browser
 Abaixo estão listadas todas as versões disponíveis do jogo
 ```diff
 Aviso: as versões 4.0 e 3.0 demoram um pouco mais para carregar no browser porém continuam funcionais
@@ -29,7 +29,7 @@ Aviso: as versões 4.0 e 3.0 demoram um pouco mais para carregar no browser por�
 ><p>senha:zumbi</p>
 
 ---
-## Tecnologias Utilizadas
+## :computer: Tecnologias Utilizadas
 - Unity 3D
 - C#
 ---
