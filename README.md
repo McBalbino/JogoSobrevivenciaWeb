@@ -24,7 +24,7 @@ Aviso: as versões 4.0 e 3.0 demoram um pouco mais para carregar no browser por�
 >acesse: https://mcbalbino.itch.io/apocalipse-zumbi-a-v2
 ><p>senha: zumbi</p>
 
-- <h4>Jogar versão 1.0r</h4>
+- <h4>Jogar versão 1.0</h4>
 >acesse: https://mcbalbino.itch.io/apocalipse-zumbi-a
 ><p>senha:zumbi</p>
 
