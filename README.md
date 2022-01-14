@@ -11,19 +11,19 @@ Abaixo estão listadas todas as versões disponíveis do jogo
 ><h4>Aviso: as versões 4.0 e 3.0 demoram um pouco mais para carregar no browser porém continuam funcionais</h4>
 
 
-- <h4>Jogar versão 4.0 no browser</h4>
+- <h4>Jogar versão 4.0</h4>
 >acesse: https://mcbalbino.itch.io/apocalipse-zumbi-a-v4
 ><p>senha: zumbi</p>
 
-- <h4>Jogar versão 3.0 no browser</h4>
+- <h4>Jogar versão 3.0</h4>
 >acesse: https://mcbalbino.itch.io/apocalipse-zumbi-a-v3
 ><p>senha: zumbi</p>
 
-- <h4>Jogar versão 2.0 no browser</h4>
+- <h4>Jogar versão 2.0</h4>
 >acesse: https://mcbalbino.itch.io/apocalipse-zumbi-a-v2
 ><p>senha: zumbi</p>
 
-- <h4>Jogar versão 1.0 no browser</h4>
+- <h4>Jogar versão 1.0r</h4>
 >acesse: https://mcbalbino.itch.io/apocalipse-zumbi-a
 ><p>senha:zumbi</p>
 
