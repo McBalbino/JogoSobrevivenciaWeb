@@ -1,9 +1,9 @@
 <h1 align="center">JogoSobrevivenciaWebAlura</h1>
 <p align="center">Repositório do jogo de sobrevivencia à zumbis web do curso da Alura</p>
 
-<h4 align="center">
-  Desenvolvimento finalizado
-</h4>
+<p align="center">
+<img src="https://img.shields.io/badge/STATUS-FINALIZADO-blue?style=for-the-badge"/>
+</p>
 
 ---
 ## Releases - Como jogar no browser
