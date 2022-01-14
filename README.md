@@ -28,4 +28,8 @@ Abaixo estão listadas todas as versões disponíveis do jogo
 ><p>senha:zumbi</p>
 
 ---
+## Tecnologias Utilizadas
+- Unity 3D
+- C#
+---
 Em caso de bug, por gentileza entre em contato comigo ou abra uma issue
