@@ -32,4 +32,4 @@ Abaixo estão listadas todas as versões disponíveis do jogo
 - Unity 3D
 - C#
 ---
-Em caso de bug, por gentileza entre em contato comigo ou abra uma issue
+Em caso de bug ou sugestão, por gentileza entre em contato comigo ou abra uma issue
