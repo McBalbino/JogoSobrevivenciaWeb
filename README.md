@@ -14,19 +14,15 @@ Aviso: as vers천es 4.0 e 3.0 demoram um pouco mais para carregar no browser por�
 
 - <h4>Jogar vers찾o 4.0</h4>
 >acesse: https://mcbalbino.itch.io/apocalipse-zumbi-a-v4
-><p>senha: zumbi</p>
 
 - <h4>Jogar vers찾o 3.0</h4>
 >acesse: https://mcbalbino.itch.io/apocalipse-zumbi-a-v3
-><p>senha: zumbi</p>
 
 - <h4>Jogar vers찾o 2.0</h4>
 >acesse: https://mcbalbino.itch.io/apocalipse-zumbi-a-v2
-><p>senha: zumbi</p>
 
 - <h4>Jogar vers찾o 1.0</h4>
 >acesse: https://mcbalbino.itch.io/apocalipse-zumbi-a
-><p>senha:zumbi</p>
 
 ---
 ## :computer: Tecnologias Utilizadas
